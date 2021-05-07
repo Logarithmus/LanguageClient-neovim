@@ -28,6 +28,14 @@ release:
 		cp -f ${CARGO_TARGET_DIR}/release/languageclient bin/
 	chmod a+x bin/languageclient
 
+debug:
+	cargo build
+	[ -z "${CARGO_TARGET_DIR}" ] && \
+		cp -f target/debug/languageclient bin/ || \
+		cp -f ${CARGO_TARGET_DIR}/debug/languageclient bin/
+	chmod a+x bin/languageclient
+
+
 bump-version:
 	[[ `git rev-parse --abbrev-ref HEAD` == "dev" ]] || (echo "Not on branch dev"; exit 1)
 	cargo release patch

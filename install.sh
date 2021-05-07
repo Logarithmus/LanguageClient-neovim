@@ -36,7 +36,7 @@ download() {
 try_build() {
     if command -v cargo > /dev/null; then
         echo "Trying build locally ${version} ..."
-        make release
+        make debug
     else
         echo "cargo is not available. Abort."
         return 1
