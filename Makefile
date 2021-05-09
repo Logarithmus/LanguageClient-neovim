@@ -21,6 +21,13 @@ clippy:
 vim-lint:
 	vint autoload plugin
 
+debug:
+	cargo build
+	[ -z "${CARGO_TARGET_DIR}" ] && \
+		cp -f target/debug/languageclient bin/ || \
+		cp -f ${CARGO_TARGET_DIR}/debug/languageclient bin/
+	chmod a+x bin/languageclient
+
 release:
 	cargo build --release
 	[ -z "${CARGO_TARGET_DIR}" ] && \
